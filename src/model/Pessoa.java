@@ -1,14 +1,20 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Pessoa {
     protected String nome;
     protected String email;
     protected String senha;
     protected String telefone;
-    protected String cep; // CEP também está em Endereco, verificar a necessidade aqui.
-                          // Pode ser o CEP principal da pessoa.
+    protected String cep; 
+
+
+    protected List<Endereco> enderecos;
 
     public Pessoa() {
+        this.enderecos = new ArrayList<>();
     }
 
     public Pessoa(String nome, String email, String senha, String telefone, String cep) {
@@ -17,22 +23,21 @@ public abstract class Pessoa {
         this.senha = senha;
         this.telefone = telefone;
         this.cep = cep;
+        this.enderecos = new ArrayList<>();
     }
 
     public boolean login() {
-        // Implementação do login
-        System.out.println("Método login() chamado.");
+        System.out.println("Método login() chamado para: " + this.email);
         return false;
     }
 
     public boolean cadastrar() {
-        // Implementação do cadastro
-        System.out.println("Método cadastrar() chamado.");
+        System.out.println("Método cadastrar() chamado para: " + this.nome);
+
         return false;
     }
 
     public boolean cancelar() {
-        // Implementação do cancelamento
         System.out.println("Método cancelar() chamado.");
         return false;
     }
@@ -76,5 +81,26 @@ public abstract class Pessoa {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
+    }
+
+    public void addEndereco(Endereco endereco) {
+        if (this.enderecos == null) {
+            this.enderecos = new ArrayList<>();
+        }
+        this.enderecos.add(endereco);
+    }
+
+    public void removeEndereco(Endereco endereco) {
+        if (this.enderecos != null) {
+            this.enderecos.remove(endereco);
+        }
     }
 }

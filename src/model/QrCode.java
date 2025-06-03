@@ -1,30 +1,36 @@
 package model;
 
-public class QrCode {
-    private String dadosQr; // Atributo para armazenar os dados do QR Code gerado
+public class QrCode implements FormaPagamento {
+    private String codigo; 
+    private String dadosQrGerado; 
 
-    public QrCode() {
+    public QrCode(String codigo) {
+        this.codigo = codigo;
     }
 
-    public QrCode(String dadosQr) {
-        this.dadosQr = dadosQr;
+    @Override
+    public String gerarIdentificadorPagamento(Doacao doacao) {
+
+        String informacaoParaQr = "ID_DOACAO:" + doacao.getId() + ";VALOR:" + doacao.getValor() + ";EMPRESA_ID:" + "OBTER_ID_EMPRESA_DA_DOACAO";
+        this.dadosQrGerado = "QRCodeData[" + informacaoParaQr + "]"; 
+        System.out.println("QR Code gerado para Doacao ID " + doacao.getId() + ": " + this.dadosQrGerado);
+        return this.dadosQrGerado; 
     }
 
-    // Método conforme diagrama, X pode ser a informação a ser codificada.
-    // No diagrama, este método está em QrCode, mas FormaPagamento também tem um gerarQRCode().
-    public String gerarQRCodeInterno(String informacao) {
-        // Lógica real para gerar um QR Code (ex: usando uma biblioteca como ZXing)
-        this.dadosQr = "QRCodeData[" + informacao + "]";
-        System.out.println("Método interno gerarQRCode(X) chamado em QrCode. Dados: " + this.dadosQr);
-        return this.dadosQr;
+    @Override
+    public boolean validarPagamento() {
+        System.out.println("Método validarPagamento() para QrCode chamado.");
+        return true;
     }
 
-    // Getters e Setters
-    public String getDadosQr() {
-        return dadosQr;
+    @Override
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setDadosQr(String dadosQr) {
-        this.dadosQr = dadosQr;
+    public String getDadosQrGerado() {
+        return dadosQrGerado;
     }
+
+
 }
