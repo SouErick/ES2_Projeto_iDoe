@@ -1,28 +1,31 @@
 package model;
 
-import java.util.Date; 
-                       
+import java.util.ArrayList; 
+import java.util.Date;
+import java.util.List;    
 
 public class Doacao {
     private int id;
-    private int data; 
+    private Date data; 
     private String titulo;
-    private String especificacao;
-    private double valor; 
-                         
+    private String especificacao; 
+    private double valor;
 
-    private FormaPagamento formaPagamento; // Associação 1 com FormaPagamento
+
+    private List<FormaPagamento> formasPagamento;
 
     public Doacao() {
+        this.formasPagamento = new ArrayList<>(); 
     }
 
-    public Doacao(int id, int data, String titulo, String especificacao, int valor, FormaPagamento formaPagamento) {
+
+    public Doacao(int id, Date data, String titulo, String especificacao, double valor) {
         this.id = id;
         this.data = data;
         this.titulo = titulo;
         this.especificacao = especificacao;
         this.valor = valor;
-        this.formaPagamento = formaPagamento; // Obrigatório pela multiplicidade 1
+        this.formasPagamento = new ArrayList<>(); 
     }
 
     public void solicitarDoacao() {
@@ -31,15 +34,14 @@ public class Doacao {
 
     public void contribuir() {
         System.out.println("Método contribuir() chamado.");
+
     }
 
-    public Doacao listarPedidos() { 
-                                   
+    public Doacao listarPedidos() {
         System.out.println("Método listarPedidos() chamado.");
-        return this; // Retornando a própria instância como placeholder
+        return this; 
     }
 
-    // Getters e Setters
     public int getId() {
         return id;
     }
@@ -48,11 +50,11 @@ public class Doacao {
         this.id = id;
     }
 
-    public int getData() {
+    public Date getData() { 
         return data;
     }
 
-    public void setData(int data) {
+    public void setData(Date data) { 
         this.data = data;
     }
 
@@ -76,15 +78,28 @@ public class Doacao {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(double valor) { 
         this.valor = valor;
     }
 
-    public FormaPagamento getFormaPagamento() {
-        return formaPagamento;
+    public List<FormaPagamento> getFormasPagamento() {
+        return formasPagamento;
     }
 
-    public void setFormaPagamento(FormaPagamento formaPagamento) {
-        this.formaPagamento = formaPagamento;
+    public void setFormasPagamento(List<FormaPagamento> formasPagamento) {
+        this.formasPagamento = formasPagamento;
+    }
+
+    public void addFormaPagamento(FormaPagamento formaPagamento) {
+        if (this.formasPagamento == null) {
+            this.formasPagamento = new ArrayList<>();
+        }
+        this.formasPagamento.add(formaPagamento);
+    }
+
+    public void removeFormaPagamento(FormaPagamento formaPagamento) {
+        if (this.formasPagamento != null) {
+            this.formasPagamento.remove(formaPagamento);
+        }
     }
 }

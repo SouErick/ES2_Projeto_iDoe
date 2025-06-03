@@ -7,12 +7,12 @@ public class Endereco {
     private String complemento;
     private String bairro;
     private String cidade;
-    private char estado; // Geralmente, uma String de 2 caracteres para UF
+    private String estado;
 
     public Endereco() {
     }
 
-    public Endereco(String cep, String logradouro, String numero, String complemento, String bairro, String cidade, char estado) {
+    public Endereco(String cep, String logradouro, String numero, String complemento, String bairro, String cidade, String estado) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -23,9 +23,8 @@ public class Endereco {
     }
 
     public boolean buscarPorCEP() {
-        // Implementação da busca por CEP (ex: consumir uma API)
         System.out.println("Método buscarPorCEP() chamado para o CEP: " + this.cep);
-        return false;
+        return false; 
     }
 
     // Getters e Setters
@@ -77,11 +76,11 @@ public class Endereco {
         this.cidade = cidade;
     }
 
-    public char getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(char estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 }

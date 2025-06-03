@@ -1,41 +1,39 @@
 package model;
 
+
 public class PessoaFisica extends Pessoa {
     private String cpf;
     private int idade;
     private String tipoSanguineo;
-    private String rg;
+    private String rg; 
     private String sexo;
-    private String foto; // Geralmente, o caminho para a foto ou um array de bytes
+    private String foto; 
 
-    private Endereco endereco; // Associação 0..1 com Endereco
+    private Endereco enderecoPrincipal;
 
     public PessoaFisica() {
         super();
     }
 
     public PessoaFisica(String nome, String email, String senha, String telefone, String cepPessoa,
-                        String cpf, int idade, String tipoSanguineo, String rg, String sexo, String foto) {
+                        String cpf, int idade, String tipoSanguineo, String sexo, String foto, Endereco enderecoPrincipal) {
         super(nome, email, senha, telefone, cepPessoa);
         this.cpf = cpf;
         this.idade = idade;
         this.tipoSanguineo = tipoSanguineo;
-        this.rg = rg;
         this.sexo = sexo;
         this.foto = foto;
+        this.enderecoPrincipal = enderecoPrincipal; 
     }
 
     public boolean editarPerfil() {
-        // Implementação da edição de perfil
-        System.out.println("Método editarPerfil() chamado.");
-        return false;
+        System.out.println("Método editarPerfil() chamado para CPF: " + this.cpf);
+        return true;
     }
 
     public boolean validarCPF() {
-        // Implementação da validação de CPF
-        System.out.println("Método validarCPF() chamado.");
-        // Lógica de validação do CPF aqui
-        return this.cpf != null && !this.cpf.trim().isEmpty(); // Exemplo simples
+        System.out.println("Método validarCPF() chamado para CPF: " + this.cpf);
+        return this.cpf != null && this.cpf.matches("\\d{11}"); 
     }
 
     // Getters e Setters
@@ -63,14 +61,6 @@ public class PessoaFisica extends Pessoa {
         this.tipoSanguineo = tipoSanguineo;
     }
 
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
-    }
-
     public String getSexo() {
         return sexo;
     }
@@ -87,11 +77,11 @@ public class PessoaFisica extends Pessoa {
         this.foto = foto;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public Endereco getEnderecoPrincipal() {
+        return enderecoPrincipal;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setEnderecoPrincipal(Endereco enderecoPrincipal) {
+        this.enderecoPrincipal = enderecoPrincipal;
     }
 }
